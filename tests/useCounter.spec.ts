@@ -21,6 +21,8 @@ describe('useCounter', () => {
     const { result } = renderHook(() => useCounter());
     act(() => {
       result.current.setVal(5);
+    });
+    act(() => {
       result.current.increment();
     });
     expect(result.current.count).toBe(5);
@@ -40,10 +42,17 @@ describe('useCounter', () => {
     const { result } = renderHook(() => useCounter());
     act(() => {
       result.current.setVal(2);
-      result.current.increment();
-      result.current.setVal(10);
+    });
+    act(() => {
       result.current.increment();
     });
+    act(() => {
+      result.current.setVal(10);
+    });
+    act(() => {
+      result.current.increment();
+    });
+
     expect(result.current.count).toBe(12);
     expect(result.current.val).toBe(10);
   });
